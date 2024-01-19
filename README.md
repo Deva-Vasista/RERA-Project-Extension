@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+# TS-RERA Project Extension Module Test
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+The TS-RERA Extension Module is a collaborative effort led by a dedicated team of interns, including Aditya, Varshitha, Sanjana, Amaar, Spandana, and Vasista at National Institute Of Urban Management. This module is a critical component of the Real Estate Regulatory Authority's (TS-RERA) system, enhancing its capabilities to enable the promoter to extend their project.
 
-## Available Scripts
+## Key Objectives
+1. **Automation of Processes:** Implementing automation features to expedite and simplify regulatory processes in real estate transactions.
+   
+2. **Data Management:** Developing robust solutions for accurate recording, retrieval, and analysis of real estate information.
 
-In the project directory, you can run:
+3. **User-Friendly Interface:** Designing an intuitive interface for seamless interaction, benefiting both regulatory authorities and real estate stakeholders.
 
-### `npm start`
+4. **Compliance Monitoring:** Integrating tools for monitoring and ensuring compliance with regulatory requirements.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+5. **Communication Enhancement:** Implementing features to improve information exchange between TS-RERA and stakeholders.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Significance
+The TS-RERA Extension Module plays a crucial role in modernizing regulatory processes, fostering transparency and efficiency in the real estate market.
 
-### `npm test`
+## Technologies Used
+The project leverages cutting-edge technologies, including TypeScript, React, and other relevant tools, to develop a scalable and robust extension module.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Team Members
+- Aditya
+- Varshitha
+- Sanjana
+- Amaar
+- Spandana
+- Vasista (You)
 
-### `npm run build`
+## Current Status
+As a team, we are actively involved in the development phase, working collaboratively with the TS-RERA team to implement features and contribute to the success of the extension module.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Future Scope
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This collaborative project represents a unique opportunity for the team to make a meaningful impact on the efficiency and transparency of the TS-RERA framework.
