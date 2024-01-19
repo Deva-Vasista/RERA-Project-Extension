@@ -1,0 +1,39 @@
+.navbar {
+    display: flex;
+    justify-content: flex-start;
+    gap: 300px;
+    align-items: center;
+    background: white;
+    padding: 1em;
+    color: white;
+  }
+  
+  .logo img {
+    height: 70px; 
+  }
+  
+  .search-bar {
+    display: flex;
+    align-items: center;
+    margin:10px;
+  }
+  
+  .search-bar input {
+    padding: .5em;
+    margin-right: .7em;
+    width:fit-content;
+  }
+  
+  .menu button {
+    background-color: #2a5b9b; 
+    color: white;
+    border: none;
+    padding: .5em;
+    margin-left: .5em;
+  }
+  
+  .menu {
+    display: flex;
+    flex-direction: row; /* Display buttons in a column layout */
+    gap: 10px;
+  }

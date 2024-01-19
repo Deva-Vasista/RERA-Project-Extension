@@ -1,0 +1,63 @@
+.sub-container{
+    min-width: 200%;
+    display: flex;
+    flex-direction: row;
+    overflow: scroll;
+    height: 50vh;
+}
+#warning{
+    text-align: center;
+    background-color: rgb(255, 138, 138);
+    padding:10px;
+    margin:0;
+}
+
+.Headers{
+    color: orange;
+    background-color: white;
+}
+
+.payment-details{
+    width: 20%;;
+    padding: 5px;
+
+}
+
+.payment-details-container{
+    margin-bottom: 1em;
+    background-color: lightblue;
+    width:max-content;
+    
+}   
+
+.payment-details-container label{
+    display: block;
+    margin-bottom: .5em;
+}
+
+.payment-details-container input{
+    width: 50%;
+    padding: .5em;
+    border: 1px solid #ccc; /* Grey border similar to the image */
+    border-radius: 5px; /* Similar rounded corners as in the image */
+    background-color: #f0f0f0; /* Grey background similar to the image */
+    margin-left: 25px;
+}
+
+.notice{
+    text-align: left;
+    width: 20%;
+}
+
+
+.subbutns{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.Btn{
+    background-color: green;
+    padding: 5px;
+    border-radius: 5px;
+    margin-right: 10px;
+}

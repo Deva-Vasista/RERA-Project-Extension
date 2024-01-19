@@ -1,38 +1,183 @@
-.App {
-  text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.navbar {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background: linear-gradient(to right, #FFD700, #FF8C00);
+  padding: 1em;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.logo img {
+  height: 70px; 
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.search-bar {
+  display: flex;
+  align-items: center;
+}
+
+.search-bar input {
+  padding: .5em;
+  margin-right: .7em;
+}
+
+.menu button {
+  background-color: #004aad; 
+  color: white;
+  border: none;
+  padding: .5em;
+  margin-left: .5em;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row; /* Display buttons in a column layout */
+  gap: 10px;
+}
+
+.form {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+}
+
+.form-navigation {
+  width: 200px;
+  background-color: white;
+  padding: 1em;
+}
+
+.form-navigation :hover{
+  color: rgb(255, 94, 0);
+}
+
+.form-navigation button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background-color: white;
+  color: black;
+  border: none;
+  padding: .5em;
+  margin-bottom: .5em;
+}
+
+.form-content {
+  flex-grow: 1;
+  margin-left: 20px;
+}
+
+.form-section {
+  background-color: #e9f7fa; /* Light blue color similar to the image */
+  padding: 1em;
+  margin-bottom: 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.form-section > div {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.form-section h2 {
+  margin-top: 0;
+}
+
+.form-section label {
+  display: block;
+  margin-bottom: .5em;
+}
+
+.form-section input, .form-section select {
+  width: 100%;
+  padding: .5em;
+  border: 1px solid #ccc; /* Grey border similar to the image */
+  border-radius: 5px; /* Similar rounded corners as in the image */
+}
+
+.tag-input-container {
+  position: relative;
+}
+
+.tag-input {
+  width: 100%;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 0.5em;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.tag {
+  background-color: #e9f7fa; /* Light blue color similar to the image */
+  padding: 0.3em 0.5em;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.tag-text {
+  margin-right: 0.5em;
+}
+
+.remove-tag {
+  cursor: pointer;
+  color: #007bff;
+}
+
+.options-dialog {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0.5em;
+  max-height: 100px;
+  overflow-y: auto;
+  display: none;
+}
+
+.options-dialog div {
+  cursor: pointer;
+  padding: 0.3em;
+  transition: background-color 0.3s;
+}
+
+.options-dialog div:hover {
+  background-color: #f0f0f0;
+}
+
+.options-dialog span {
+  float: right;
+  cursor: pointer;
+  color: #007bff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  padding: .5em;
+  border-bottom: 1px solid #ccc;
+}
+
+table th {
+  background-color: #f0f0f0;
+}
+
+.edit-button {
+  background-color: #004aad; 
+  color: white;
+  border: none;
+  padding: .3em .5em;
 }
