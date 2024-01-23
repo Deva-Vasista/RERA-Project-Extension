@@ -20,11 +20,11 @@ const AssignPro = () => {
         </thead>
         <tbody>
           <tr>
-            <td>cao name</td>
-            <td>Architect Name</td>
-            <td>Email Id</td>
-            <td>Mobile No</td>
-            <td>Status</td>
+            <td>CA/111/55555</td>
+            <td>Kalyani Shivamani</td>
+            <td>KalyaniShivamani12@gmail.com </td>
+            <td>9876456719</td>
+            <td>ASSIGNED</td>
             <td><button className="reassign-button">Re-Assign</button></td>
           </tr>
         </tbody>
@@ -45,11 +45,11 @@ const AssignPro = () => {
       </thead>
       <tbody>
         <tr>
-          <td>License Number</td>
-          <td>Engineer Name</td>
-          <td>Email Id</td>
-          <td>Mobile No</td>
-          <td>Status</td>
+          <td>ENG/2388/43226</td>
+          <td>Raman Srivastavan</td>
+          <td>SRaman@hotmail.com</td>
+          <td>N/A</td>
+          <td>ASSIGNED</td>
           <td><button className="reassign-button">Re-Assign</button></td>
         </tr>
       </tbody>
@@ -70,11 +70,11 @@ const AssignPro = () => {
       </thead>
       <tbody>
         <tr>
-        <td>CA No</td>
-          <td>CA name</td>
-          <td>Email Id</td>
-          <td>Mobile No</td>
-          <td>Status</td>
+        <td>34678</td>
+          <td>Ramya Pothuri</td>
+          <td>Pothuri.Ramya@gmail.com</td>
+          <td>N/A</td>
+          <td>ASSIGNED</td>
           <td><button className="reassign-button">Re-Assign</button></td>
         </tr>
       </tbody>

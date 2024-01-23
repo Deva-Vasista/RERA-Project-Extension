@@ -51,13 +51,13 @@
   
   #tags .ReactTags__selected span.ReactTags__tag {
     border: 1px solid #ddd;
-    background: #63bcfd;
+    background: #255aeb;
     color: white;
     font-size: 12px;
     display: flex;
     padding: 5px;
     margin: 0 5px;
-    border-radius: 2px;
+    border-radius: 5px;
   }
   
   #tags .ReactTags__selected a.ReactTags__remove {
@@ -90,7 +90,7 @@
   }
   
   #tags .ReactTags__suggestions ul li.ReactTags__activeSuggestion {
-    background: #b7cfe0;
+    background: #b8cedd;
     cursor: pointer;
   }
   

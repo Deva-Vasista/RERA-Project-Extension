@@ -1,0 +1,13 @@
+.payment-container{
+    background-color: rgba(160, 255, 223, 0.959);
+    text-align: center;
+    width:150%;
+}
+
+.btns button{
+    background-color: white;
+    margin-right: 5px;
+    border-radius: 5px;
+    padding: 2px;  
+    float:right;
+}
