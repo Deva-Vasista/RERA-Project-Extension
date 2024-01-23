@@ -11,24 +11,29 @@ const Navbar = () => {
     return (
 
       <div className="navbar">
-      <div className="top-nav">
-        <div className="logo">
-          <img src={logo} alt="Logo" />
-        </div>
+  <div className="comp-cont">
+    <div className="top-nav">
+      <div className="logo">
+        <img src={logo} alt="Logo" />
+      </div>
 
-        <div className="Right">
+      <div className="Right">
         <div className="search-bar">
           <input type="text" placeholder="Project, Agent, Promoter, Professional, Location" />
-      
           <button id="searchicon" type="submit">search</button>
         </div>
         <div className="menu">
           <button onClick={routechange}>DASHBOARD</button>
           <button>MISC</button>
         </div>
-        </div>
       </div>
-      </div>
+    </div>
+  </div>
+  <div className="pic">
+    <h3>Project Extension Form</h3>
+  </div>
+</div>
+
     );
   };
   export default Navbar;

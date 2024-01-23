@@ -4,7 +4,6 @@ import { TbFileSearch } from "react-icons/tb";
 import { TiDelete } from "react-icons/ti";
 import InputTags from "./InputTags.js";
 import { useNavigate } from "react-router-dom";
-
 const ProjectE = () => {
     return (
       <>

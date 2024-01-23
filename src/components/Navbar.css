@@ -1,44 +1,48 @@
-body {
-  margin: 0; /* Remove default body margin */
-}
-
 .navbar {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  width: auto;
   background: white;
+}
+
+.comp-cont {
+  display: flex;
+  align-items: stretch;
+  background: rgb(247, 236, 236);
   padding: 1em;
   color: white;
   width: 100%;
 }
 
 .Right {
-  width: 70%; /* Adjust the width as needed */
+  width: inherit;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center items horizontally */
-  margin-bottom: 20px; /* Add empty space underneath .navbar */
+  align-items: center;
 }
 
 .top-nav {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  height: fit-content;
+  width: inherit;
 }
 
 .logo img {
-  height: 70px;
+  height: 100px;
 }
 
 .search-bar {
   display: flex;
-  flex-direction: column; /* Align items in a column layout */
-  align-items: center; /* Center items horizontally */
-  margin: 10px;
+  flex-direction: row;
+  align-items: center;
 }
 
 .search-bar input {
   padding: .5em;
   margin-bottom: .7em;
+  width: 100%;
+  margin: auto;
 }
 
 .menu button {
@@ -51,6 +55,26 @@ body {
 
 .menu {
   display: flex;
-  flex-direction: column; /* Align buttons in a column layout */
+  flex-direction: row;
   gap: 10px;
 }
+
+.pic {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background: url(https://imgs.search.brave.com/V5VhiHGR9ljJzM6QugwcBCzqfSn0rVU2PWAt3PL49Ds/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC93cDY1Mzkz/OTMuanBn);
+  background-size: 100%; /* Maintain aspect ratio and cover the entire div with the background image */
+  text-align: center;
+  padding: 0; /* Remove padding */
+  height: 150px; /* Maintain the desired height */
+}
+
+.pic h3 {
+  margin: 0; /* Remove default margin for h3 */
+  color: black; /* Set text color to white or the desired color */
+}
+
+
