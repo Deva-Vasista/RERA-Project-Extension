@@ -35,8 +35,9 @@
     cursor: pointer;
     border-radius: 4px;
   }
-
-  .form-table input[type="text"] {
+  .form-table input[type="number"] {
+    display: block;
+    margin: 0 auto;
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
