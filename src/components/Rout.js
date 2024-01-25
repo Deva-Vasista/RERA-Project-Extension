@@ -9,6 +9,7 @@ function Content(){
     return(
         <div>
             <Routes>
+                <Route path='/' element={<ProjectExtension/>}></Route>
                 <Route path='/project-extension-detail' index    element={<ProjectExtension/>}></Route>
                 <Route path='/assign-professionals' element={<AssignPro />}></Route>
                 <Route path='/perform-certification' element={<div>Perform Certification</div>}></Route>
