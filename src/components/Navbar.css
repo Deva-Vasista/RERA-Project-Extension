@@ -65,16 +65,16 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  background: url(https://imgs.search.brave.com/V5VhiHGR9ljJzM6QugwcBCzqfSn0rVU2PWAt3PL49Ds/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC93cDY1Mzkz/OTMuanBn);
-  background-size: 100%; /* Maintain aspect ratio and cover the entire div with the background image */
+  background: url(https://imgs.search.brave.com/irEQ4k3l_A6-NGC4DAB5UdqhUxjyfLHMsNI9g1YgMS0/rs:fit:860:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAyLzgyLzE2Lzcw/LzM2MF9GXzI4MjE2/NzAxOF9yWHNoaTFz/dWE4bllNVUVsUWlV/OThpWEh1VzIxN1lB/by5qcGc);
+  background-size: 100%; 
   text-align: center;
-  padding: 0; /* Remove padding */
-  height: 150px; /* Maintain the desired height */
+  padding: 0; 
+  height: 150px;  
 }
 
 .pic h3 {
-  margin: 0; /* Remove default margin for h3 */
-  color: black; /* Set text color to white or the desired color */
+  margin: 0; 
+  color: black; 
 }
 
 

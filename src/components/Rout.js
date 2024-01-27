@@ -10,11 +10,11 @@ function Content(){
         <div>
             <Routes>
                 <Route path='/' element={<ProjectExtension/>}></Route>
-                <Route path='/project-extension-detail' index    element={<ProjectExtension/>}></Route>
+                <Route path='/project-extension' index    element={<ProjectExtension/>}></Route>
                 <Route path='/assign-professionals' element={<AssignPro />}></Route>
                 <Route path='/perform-certification' element={<div>Perform Certification</div>}></Route>
                 <Route path='/payment' element={<Paywall/>}></Route>
-                <Route path='/Confirm' element={<Confirm/>}></Route>
+                <Route path='/confirm' element={<Confirm/>}></Route>
             </Routes>
         </div>
     );

@@ -2,15 +2,19 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./paywall.css"
 
+const Input = () => <input type="checkbox" class="input2"></input>;
 
 const Paywall=()=>
 {
     let navigate = useNavigate(); 
   const routeChange = () =>{ 
-    let path = `/Confirm`; 
+    let path = `/Confirm`
     navigate(path);
   }
-  
+  const prev =()=>{
+    let p = "/perform-certification";
+    navigate(p)
+  }
 
     const fee = 22400;
     return(
@@ -63,23 +67,23 @@ const Paywall=()=>
             <div className="tac">
                     <h3 className="Headers">TERMS AND CONDITIONS</h3>
                     <p><ul>
-                        <li>Agree to all Terms and Condition defined by GUURERA using Online Payment Facility using this Portal detailed T&C can be found "Terms & Conditions Section on this website. Please accept Terms and Conditions.</li>
+                        <li><Input/>Agree to all Terms and Condition defined by GUURERA using Online Payment Facility using this Portal detailed T&C can be found "Terms & Conditions Section on this website. Please accept Terms and Conditions.</li>
                         <br/>
 
-                    <li>The required Information as per the RERA act will be displayed in public domain Please affirm the declarations.</li>
+                    <li><Input/>The required Information as per the RERA act will be displayed in public domain Please affirm the declarations.</li>
                     <br/>
 
-<li>[I/We] solemnly affirm and declare that the particulars given in herein e correct to [my/our) knowledge and bellef and
+<li><Input/>[I/We] solemnly affirm and declare that the particulars given in herein e correct to [my/our) knowledge and bellef and
 <br/>
 nothing material has been concealed by [me/us] therefrom Please athrm the declarations We hereby affirm and declare that.</li> 
 <br/>
-<li>I/We have read all the particulars on this website and in the event if this project is submitted as a New Project and found as "On-going at the timeof evaluation, I/We stand liable to abide by the actions taken as per the GUU RERA Authority Act Please affirm the declarations.</li>
+<li><Input/>I/We have read all the particulars on this website and in the event if this project is submitted as a New Project and found as "On-going at the timeof evaluation, I/We stand liable to abide by the actions taken as per the GUU RERA Authority Act Please affirm the declarations.</li>
 </ul>
 </p>
             </div>
             <div className="subbutns">
                 <center>
-                <button type="button" className="Btn">Previous</button>
+                <button type="button" className="Btn" onClick={prev}>Previous</button>
                 <button type="submit" className="Btn" onClick={routeChange}>Agree and pay {fee}</button>
                 </center>
             </div>

@@ -1,13 +1,29 @@
-import React from "react";
-import logo from "./gujrerelogo.png"
+import React, { useState } from "react";
+import logo from "./gujrerelogo.png";
+import { Menu, Input } from 'antd';
 import { useNavigate } from "react-router-dom";
 import './Navbar.css'
 
+const { Item } = Menu;
+const { Search } = Input;
+
 const Navbar = () => {
-  let nav = useNavigate();
+  let navigate = useNavigate();
   const routechange=()=>{
-    nav("/project-extension-detail");
+    navigate("/project-extension-detail");
   }
+
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleMenuClick = ({ key }) => {
+        navigate(key);
+    };
+
+  const handleSearch = (value) => {
+        setSearchQuery(value);
+        navigate(`/${value.toLowerCase().replace(/\s/g, '-')}`);
+    };
+  
     return (
 
       <div className="navbar">
@@ -19,8 +35,11 @@ const Navbar = () => {
 
       <div className="Right">
         <div className="search-bar">
-          <input type="text" placeholder="Project, Agent, Promoter, Professional, Location" />
-          <button id="searchicon" type="submit">search</button>
+        <Search
+                placeholder="Search for a page"
+                onSearch={handleSearch}
+                style={{ marginBottom: 20,width:350 }}
+            />
         </div>
         <div className="menu">
           <button onClick={routechange}>DASHBOARD</button>
