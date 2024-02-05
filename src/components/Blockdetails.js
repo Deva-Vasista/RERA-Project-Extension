@@ -10,6 +10,7 @@ export default function Blockdetails(){
         const formattedDate = new Date(dateString).toLocaleDateString('en-US', options);
         return formattedDate;
       };
+
     const getdata = async () => {
         try {
           // Make a GET request to the Express server endpoint

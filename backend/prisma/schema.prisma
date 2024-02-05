@@ -8,8 +8,8 @@ datasource db {
 }
 
 model blocks {
-  id                                      String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  project_id                              String?   @db.Uuid
+  id                                      Int       @id @default(autoincrement())
+  project_id                              Int
   block_name                              String?
   development_start_date                  DateTime? @db.Date
   development_end_date                    DateTime? @db.Date
@@ -19,48 +19,41 @@ model blocks {
   commencement_certificate_no             String?
   date_of_latest_commencement_certificate DateTime? @db.Date
   all_commencement_certificates           String?
-}
-
-model form_b {
-  id                     String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  project_id             String?   @db.Uuid
-  date_of_issuance       DateTime? @db.Date
-  declaration_form_b     Bytes?
-  authorized_signatory   String?
-  contact_details        String?
-  new_declaration_form_b Bytes?
-}
-
-model form_b1 {
-  id                      String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  project_id              String?   @db.Uuid
-  date_of_issuance        DateTime? @db.Date
-  declaration_form_b1     Bytes?
-  authorized_signatory    String?
-  contact_details         String?
-  new_declaration_form_b1 Bytes?
-}
-
-model form_b2 {
-  id                      String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  project_id              String?   @db.Uuid
-  date_of_issuance        DateTime? @db.Date
-  declaration_form_b2     Bytes?
-  authorized_signatory    String?
-  contact_details         String?
-  new_declaration_form_b2 Bytes?
-  order_45                Bytes?
-}
-
-model projects {
-  id                    String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  extend_to_date        DateTime? @db.Date
-  reasons_for_extension String[]
-  supporting_documents  String?
+  projects                                projects  @relation(fields: [project_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model test {
   id     Int     @id
   name   String? @db.VarChar(20)
   gender String? @db.Char(1)
+}
+
+model projects {
+  id               Int                @id @default(autoincrement())
+  name             String?            @db.VarChar(50)
+  ProjectExtension ProjectExtension[]
+  blocks           blocks[]
+}
+
+model ProjectExtension {
+  id                               Int      @id @default(autoincrement())
+  extendToDate                     DateTime @default(now())
+  reasonForExtension               String[]
+  supportingDocuments              String?
+  supportingDocumentsOptions       String?
+  documentDate                     DateTime @default(now())
+  declarationFormB                 String?
+  authorizedSignatory              String?
+  contactDetails                   String?
+  DevelopmentDateB1                DateTime @default(now())
+  DevelopmentDeclarationFormB1     String?
+  DevelopmentAuthorizedSignatoryB1 String?
+  contactB1                        String?
+  DevelopmentDateB2                DateTime @default(now())
+  DevelopmentDeclarationFormB2     String?
+  LandOwnerB2                      String?
+  contactB2                        String?
+  order45                          String?
+  project_id                       Int
+  projects                         projects @relation(fields: [project_id], references: [id])
 }
