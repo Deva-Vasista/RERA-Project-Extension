@@ -4,9 +4,22 @@ import { TbFileSearch } from "react-icons/tb";
 import { TiDelete } from "react-icons/ti";
 import InputTags from "./InputTags.js";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios'
 import Blockdetails from "./Blockdetails.js";
 import FileUploadButton from './FileuploadBtn.js'
+import axios from "axios";
+
+const getRandomFromList =(intList)=>{
+  if (intList.length === 0) {
+    console.error('Error: The list is empty.');
+    return null;
+  }
+
+  // Get a random index from the list
+  const randomIndex = Math.floor(Math.random() * intList.length);
+
+  // Return the randomly selected integer
+  return intList[randomIndex];
+}
 
 const ProjectExtension = () => {
     let navigate = useNavigate(); 
@@ -15,17 +28,9 @@ const ProjectExtension = () => {
     navigate(path);
   }
 const [formData, setFormData] = useState({
+      project_id: getRandomFromList([1,2,3,4]),
       extendToDate: '',
-      reasonForExtension: '',
-      blockName: ['A','B'],
-      developmentStartDate: ['12-03-2017','15-07-2020'],
-      developmentEndDate: ['30-05-2019','12-05-2022'],
-      height: ['200','3000'],
-      fsi: ['123','456'],
-      builtupArea: [2000,350],
-      commencementCertificateNo: ['A/B/6564656556/785765','QS/B/1234567/1325678'],
-      dateOfLatestCommencementCertificate: ['23-05-2022','12-06-2024'],
-      allCommencementCertificates: ['Y','Y'],
+      reasonForExtension: [''],
       supportingDocuments: '',
       supportingDocumentsOptions: '',
       supportingDocumentTable: [
@@ -46,10 +51,21 @@ const [formData, setFormData] = useState({
         },
       ],
       contactDetails: '',
-      jointDevelopmentDate: '',
-      jointDevelopmentDeclarationFormB: '',
-      jointDevelopmentAuthorizedSignatory: '',
-      jointDevelopmentDeclarationFormBTable: [
+      DevelopmentDateB1: '',
+      DevelopmentDeclarationFormB1: '',
+      DevelopmentAuthorizedSignatoryB1: '',
+      contactB1:'',
+      DevelopmentDeclarationFormB1Table: [
+        {
+          id: 1,
+          viewFile: 1,
+        },
+      ],
+      DevelopmentDateB2: '',
+      DevelopmentDeclarationFormB2: '',
+      LandOwnerB2:'',
+      contactB2:'',
+      DevelopmentDeclarationFormB2Table: [
         {
           id: 1,
           viewFile: 1,
@@ -64,10 +80,29 @@ const [formData, setFormData] = useState({
       ],
     });
   
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
       e.preventDefault();
-      console.log('Form Data:', formData);
-      
+      console.log('Request Sent',formData)
+      try {
+        // Assuming your server is running on http://localhost:3001
+        const response = await axios.post('http://localhost:3001/api/Submit', formData);
+  
+        // Handle the response as needed
+        console.log('Server response:', response.data);
+  
+        // You can redirect or perform other actions based on the response
+  
+      } catch (error) {
+        console.error('Error submitting data:', error);
+        // Handle errors as needed
+      }   
+    };
+
+    const updateReasonsForExtension = (updatedTags) => {
+      setFormData((prevData) => ({
+        ...prevData,
+        reasonForExtension: updatedTags.map((tag) => tag.text),
+      }));
     };
   
     const handleInputChange = (e) => {
@@ -76,7 +111,7 @@ const [formData, setFormData] = useState({
         ...prevData,
         [name]: value,
       }));
-    };
+        };
   
     return (
       <>
@@ -94,7 +129,6 @@ const [formData, setFormData] = useState({
                   <input
                     type="date"
                     name="extendToDate"
-                    value={formData.extendToDate}
                     onChange={handleInputChange}
                   />
                 </div>
@@ -104,7 +138,7 @@ const [formData, setFormData] = useState({
                   <h5>1.2 Reason for Seeking Extension</h5>
                   <div>
                     {/* Use your InputTags component here */}
-                    {<InputTags />}
+                    {<InputTags onTagsChange={updateReasonsForExtension}/>}
                     {/* <input
                       type="text"
                       name="reasonForExtension"
@@ -206,26 +240,25 @@ const [formData, setFormData] = useState({
                 <h2 style={{ padding: '8px' }}>IN CASE OF JOINT DEVELOPMENT</h2>
                 <hr />
                 <p className="orange">
-                  Form-B(Declaration Drainage/Carpet Affidavit Along With Form-B To
-                  BE Uploaded Here)*
+                  Form-B1 At the time of DEVELOPMENT Agreement*
                 </p>
                 <p style={{ fontSize: '12px' }}>[Affidavit by Promoter]</p>
                 <div className="section-5">
                   <div>
                     <p>1.4 Date of Issuance of Document</p>
-                    <input type="date" name="jointDevelopmentDate" value={formData.jointDevelopmentDate} onChange={handleInputChange} />
-                    <p>1.7 Declaration Form-B</p>
+                    <input type="date" name="DevelopmentDateB1" value={formData.DevelopmentDateB1} onChange={handleInputChange} />
+                    <p>1.7 Declaration Form-B1</p>
                     <button className="file-btn">
-                      <TbFileSearch style={{ width: '15px', height: '15px' }} /> View File / {formData.jointDevelopmentDeclarationFormBTable[0].viewFile}
+                      <TbFileSearch style={{ width: '15px', height: '15px' }} /> View File / {formData.DevelopmentDeclarationFormB1Table[0].viewFile}
                     </button>
                   </div>
                   <div>
-                    <p>1.5 Authorized Signatory of Project who has signed Form B</p>
-                    <input type="text" name="jointDevelopmentAuthorizedSignatory" value={formData.jointDevelopmentAuthorizedSignatory} onChange={handleInputChange} />
-                    <p>1.7.1 Declaration Form-B</p>
+                    <p>1.5 Authorized Signatory of Project who has signed Form B1</p>
+                    <input type="text" name="DevelopmentAuthorizedSignatoryB1" value={formData.DevelopmentAuthorizedSignatoryB1} onChange={handleInputChange} />
+                    <p>1.7.1 New Declaration Form-B1</p>
                     <div style={{ display: 'flex' }}>
                       <button className="file-btn">
-                        <TbFileSearch style={{ width: '15px', height: '15px' }} /> View File / {formData.jointDevelopmentDeclarationFormBTable[0].viewFile}
+                        <TbFileSearch style={{ width: '15px', height: '15px' }} /> View File / {formData.DevelopmentDeclarationFormB1Table[0].viewFile}
                       </button>
                       <button className="file2-btn">
                         <TiDelete style={{ width: '20px', height: '20px' }} />
@@ -234,31 +267,58 @@ const [formData, setFormData] = useState({
                   </div>
                   <div>
                     <p>1.6 Contact Details</p>
-                    <input type="text" className="contact" name="jointDevelopmentContactDetails" value={formData.jointDevelopmentContactDetails} onChange={handleInputChange} />
+                    <input type="text" className="contact" name="contactB2" value={formData.contactB2} onChange={handleInputChange} />
                   </div>
                 </div>
               </section>
   
               {/* Section 7 */}
               <section>
+                <hr />
                 <p className="orange">
-                  Form-B(Declaration Drainage/Carpet Affidavit Along With Form-B To
-                  BE Uploaded Here)*
+                  Form-B2 At the time of DEVELOPMENT Agreement*
                 </p>
                 <p style={{ fontSize: '12px' }}>[Affidavit by Promoter]</p>
                 <div className="section-5">
                   <div>
                     <p>1.4 Date of Issuance of Document</p>
-                    <input type="date" name="order45Date" value={formData.order45Date} onChange={handleInputChange} />
-                    <p>1.7 Declaration Form-B</p>
+                    <input type="date" name="DevelopmentDateB2" value={formData.DevelopmentDateB2} onChange={handleInputChange} />
+                    <p>1.7 Declaration Form-B1</p>
                     <button className="file-btn">
-                      <TbFileSearch style={{ width: '15px', height: '15px' }} /> View File / {formData.order45Table[0].viewFile}
+                      <TbFileSearch style={{ width: '15px', height: '15px' }} /> View File / {formData.DevelopmentDeclarationFormB2Table[0].viewFile}
                     </button>
                   </div>
-                  {/* Add more fields as needed */}
+                  <div>
+                    <p>1.5 Land Owner</p>
+                    <input type="text" name="LandOwnerB2" value={formData.LandOwnerB2} onChange={handleInputChange} />
+                    <p>1.7.1 New Declaration Form-B1</p>
+                    <div style={{ display: 'flex' }}>
+                      <button className="file-btn">
+                        <TbFileSearch style={{ width: '15px', height: '15px' }} /> View File / {formData.DevelopmentDeclarationFormB1Table[0].viewFile}
+                      </button>
+                      <button className="file2-btn">
+                        <TiDelete style={{ width: '20px', height: '20px' }} />
+                      </button>
+                    </div>
+                  </div>
+                  <div>
+                    <p>1.6 Contact Details</p>
+                    <input type="text" className="contact" name="contactB1" value={formData.contactB1} onChange={handleInputChange} />
+                  </div>
                 </div>
               </section>
-  
+              <section>
+                <div>
+                <div className="section-5">
+                  <p>1.16 Order 45*</p>
+                </div>
+                  <div style={{ display: 'flex' }}>
+                      <button className="file-btn">
+                        <TbFileSearch style={{ width: '15px', height: '15px' }} /> View File / {formData.DevelopmentDeclarationFormB1Table[0].viewFile}
+                      </button>
+                  </div>
+                </div>
+              </section>
               {/* Submit button */}
               
               <button type="submit" className="file-btn" style={{ display: 'block', margin: 'auto' }}>

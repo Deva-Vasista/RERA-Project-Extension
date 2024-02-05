@@ -186,6 +186,9 @@ thead tr:nth-child(2) td {
     align-items: center;
     justify-content: space-evenly;
 }
+.file2-btn:hover{
+  cursor: pointer;
+}
 
 .delete-btn{
     margin: 15px 0px;
