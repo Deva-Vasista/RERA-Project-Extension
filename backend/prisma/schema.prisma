@@ -1,0 +1,18 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model form {
+  uid                   String  @db.VarChar(30)
+  Consultant_Name       String? @map("Consultant Name") @db.VarChar(50)
+  Consultant_Profession String? @map("Consultant Profession") @db.VarChar(100)
+  Email_Id              String? @map("Email Id") @db.VarChar(50)
+  Mobile_No             String? @map("Mobile No") @db.VarChar(10)
+  Status                String? @db.VarChar(20)
+  pan                   String  @id @db.VarChar(10)
+}
