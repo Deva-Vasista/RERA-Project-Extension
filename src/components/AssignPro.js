@@ -349,7 +349,7 @@
 import React, { useState, useEffect } from 'react';
 import './Assignpro.css';
 import axios from 'axios';
-
+import {message} from "antd";
 const AssignPro = () => {
   const [details, setDetails] = useState([]);
   const getProf = async () => {
@@ -393,6 +393,7 @@ const AssignPro = () => {
     );
 
     if (filtered.length === 0) {
+      setPanNotFound(formType);
       if (formType === 'Form One') {
       setFilteredDetailsFormOne([]);
       } else if (formType === 'Form Two') {
@@ -401,8 +402,7 @@ const AssignPro = () => {
         setFilteredDetailsFormThree([]);
       }
 
-      // Display "Pan not found" message
-      setPanNotFound(formType);
+      // Display "Pan not found" 
       return;
     }
 
@@ -412,26 +412,64 @@ const AssignPro = () => {
       const filteredFormOne = details.filter(
         (element) => element.pan === inputNumber && element.Status === 'AVAILABLE' && element.Consultant_Profession==='CA'
       );
-      if(!filteredDetailsFormOne){setFilteredDetailsFormOne('');
-    }
+      if(filteredDetailsFormOne.length===0){
+       message.error("Data not found");
+        setFilteredDetailsFormOne([]);
+        setInputNumberFormOne('');
+        <form onSubmit={(e) => { e.preventDefault(); handleSubmit('Form One'); }}>
+            <input
+              type='text'
+              value={inputNumberFormOne}
+              onChange={(e) => handleInputChange('Form One', e)}
+              placeholder='Enter COA Number'
+            />
+            <button type='submit' className='reassign-button'>Check Availability</button>
+          </form>
+      }else{setFilteredDetailsFormOne(filteredFormOne);
+        setCurrentFormOne(formType);}
       setFilteredDetailsFormOne(filteredFormOne);
       setCurrentFormOne(formType);
     } else if (formType === 'Form Two') {
       const filteredFormTwo = details.filter(
         (element) => element.pan === inputNumber && element.Status === 'AVAILABLE' && element.Consultant_Profession==='ENGINEER'
       );
-      if(!filteredDetailsFormTwo){setFilteredDetailsFormTwo('');
-    }
+      if(filteredDetailsFormTwo.length===0){
+        message.error("Data not found");
+        setFilteredDetailsFormTwo([]);
+        setInputNumberFormTwo('');
+      <form onSubmit={(e) => { e.preventDefault(); handleSubmit('Form Two');}}>
+      <input
+        type='text'
+        value={inputNumberFormTwo}
+        onChange={(e) => handleInputChange('Form Two', e)}
+        placeholder='Enter COA Number'
+      />
+      <button type='submit' className='reassign-button'>Check Availability</button>
+    </form>
+    }else{
       setFilteredDetailsFormTwo(filteredFormTwo);
       setCurrentFormTwo(formType);
+    }
     } else if (formType === 'Form Three') {
       const filteredFormThree = details.filter(
         (element) => element.pan === inputNumber && element.Status === 'AVAILABLE' && element.Consultant_Profession==='ARCHITECT'
       );
-      if(!filteredDetailsFormThree){setFilteredDetailsFormThree('');
-    }
-      setFilteredDetailsFormThree(filteredFormThree);
-      setCurrentFormThree(formType);
+      if(filteredDetailsFormThree===0){
+        message.error("Data not found");
+        setFilteredDetailsFormThree([]);
+        setInputNumberFormThree('');
+        <form onSubmit={(e) => { e.preventDefault(); handleSubmit('Form Three'); }}>
+            <input
+              type='text'
+              value={inputNumberFormThree}
+              onChange={(e) => handleInputChange('Form Three', e)}
+              placeholder='Enter PAN Number'
+              className='inbtn'
+            />
+            <button type='submit' className='reassign-button'>Check Availability</button>
+          </form>
+    }else{setFilteredDetailsFormThree(filteredFormThree);
+      setCurrentFormThree(formType);}
     }
   };
 
@@ -458,7 +496,7 @@ const AssignPro = () => {
       return (
         <div>
           {getInputNumber === '' && <p>Please enter a valid {formType === 'Form One' ? 'COA' : 'PAN'} Number</p>}
-          {filteredDetails.length === 0 && getInputNumber !== '' && <p>Pan not found</p>}
+          {(filteredDetails.length === 0  || getInputNumber !== '' ) && <p>Pan not found</p>}
           <input
             type='text'
             value={getInputNumber}
@@ -482,7 +520,7 @@ const AssignPro = () => {
           <table className='form-table'>
             <thead>
               <tr>
-                <th>UID</th>
+                <th>UID</ th>
                 <th>Consultant Name</th>
                 <th>Consultant Profession</th>
                 <th>Email Id</th>
