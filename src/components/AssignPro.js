@@ -8,6 +8,7 @@ const AssignPro = () => {
     const res = await axios.get('http://localhost:3001/api/getAssignProfessional');
     setDetails(res.data);
   };
+  console.log(details)
 
   useEffect(() => {
     getProf();
@@ -25,7 +26,7 @@ const AssignPro = () => {
   const [currentFormTwo, setCurrentFormTwo] = useState(null);
   const [currentFormThree, setCurrentFormThree] = useState(null);
 
-  const [panNotFound, setPanNotFound] = useState(null);
+  // const [panNotFound, setPanNotFound] = useState(null);
 
   const handleInputChange = (formType, e) => {
     const value = e.target.value;
@@ -37,91 +38,43 @@ const AssignPro = () => {
       setInputNumberFormThree(value);
     }
   };
-
   const handleSubmit = (formType) => {
     const inputNumber = getInputNumberByFormType(formType);
-    const filtered = details.filter(
-      (element) => element.pan === inputNumber && element.Status === 'available' 
-    );
-
-    if (filtered.length === 0) {
-      setPanNotFound(formType);
-      if (formType === 'Form One') {
-      setFilteredDetailsFormOne([]);
-      } else if (formType === 'Form Two') {
-        setFilteredDetailsFormTwo([]);
-      } else if (formType === 'Form Three') {
-        setFilteredDetailsFormThree([]);
-      }
-
-      // Display "Pan not found" 
-      return;
-    }
-
-    setPanNotFound(null);
-
     if (formType === 'Form One') {
       const filteredFormOne = details.filter(
-        (element) => element.pan === inputNumber && element.Status === 'available' && element.Consultant_Profession==='CA'
+        (element) => element.pan === inputNumber && (element.Status === 'available' && element.Consultant_Profession==='CA')
       );
-      if(filteredDetailsFormOne.length===0){
-       message.error("Data not found");
+      if(filteredFormOne.length===0){
+       message.error("PAN not found");
         setFilteredDetailsFormOne([]);
+        setCurrentFormOne('Form One');
         setInputNumberFormOne('');
-        <form onSubmit={(e) => { e.preventDefault(); handleSubmit('Form One'); }}>
-            <input
-              type='text'
-              value={inputNumberFormOne}
-              onChange={(e) => handleInputChange('Form One', e)}
-              placeholder='Enter COA Number'
-            />
-            <button type='submit' className='reassign-button'>Check Availability</button>
-          </form>
-      }else{setFilteredDetailsFormOne(filteredFormOne);
-        setCurrentFormOne(formType);}
-      setFilteredDetailsFormOne(filteredFormOne);
-      setCurrentFormOne(formType);
-    } else if (formType === 'Form Two') {
+      }else{setFilteredDetailsFormOne(filteredFormOne);  setCurrentFormOne('Form One');
+      }
+    } 
+    else if (formType === 'Form Two') {
       const filteredFormTwo = details.filter(
-        (element) => element.pan === inputNumber && element.Status === 'available' && element.Consultant_Profession==='ENGINEER'
+        (element) => element.pan === inputNumber && (element.Status === 'available' && element.Consultant_Profession==='ENGINEER')
       );
-      if(filteredDetailsFormTwo.length===0){
-        message.error("Data not found");
+      if(filteredFormTwo.length===0){
+        console.log(filteredFormTwo);
+        message.error("PAN not found");
+        setCurrentFormTwo('Form Two');
         setFilteredDetailsFormTwo([]);
         setInputNumberFormTwo('');
-      <form onSubmit={(e) => { e.preventDefault(); handleSubmit('Form Two');}}>
-      <input
-        type='text'
-        value={inputNumberFormTwo}
-        onChange={(e) => handleInputChange('Form Two', e)}
-        placeholder='Enter COA Number'
-      />
-      <button type='submit' className='reassign-button'>Check Availability</button>
-    </form>
-    }else{
-      setFilteredDetailsFormTwo(filteredFormTwo);
-      setCurrentFormTwo(formType);
+    }else{setFilteredDetailsFormTwo(filteredFormTwo); setCurrentFormTwo('Form Two');
     }
     } else if (formType === 'Form Three') {
       const filteredFormThree = details.filter(
-        (element) => element.pan === inputNumber && element.Status === 'available' && element.Consultant_Profession==='ARCHITECT'
+        (element) => element.pan === inputNumber && (element.Status === 'available' && element.Consultant_Profession==='ARCHITECT')
       );
-      if(filteredDetailsFormThree===0){
-        message.error("Data not found");
+      if(filteredFormThree.length===0){
+        message.error("PAN not found");
         setFilteredDetailsFormThree([]);
         setInputNumberFormThree('');
-        <form onSubmit={(e) => { e.preventDefault(); handleSubmit('Form Three'); }}>
-            <input
-              type='text'
-              value={inputNumberFormThree}
-              onChange={(e) => handleInputChange('Form Three', e)}
-              placeholder='Enter PAN Number'
-              className='inbtn'
-            />
-            <button type='submit' className='reassign-button'>Check Availability</button>
-          </form>
-    }else{setFilteredDetailsFormThree(filteredFormThree);
-      setCurrentFormThree(formType);}
+        setCurrentFormThree('Form Three');
+    }else{setFilteredDetailsFormThree(filteredFormThree);  setCurrentFormThree('Form Three');
+    }
     }
   };
 
@@ -142,7 +95,6 @@ const AssignPro = () => {
   };
 
   const tables = (filteredDetails, formType) => {
-
     const getInputNumber = getInputNumberByFormType(formType);
 
     if (getInputNumber === '' || filteredDetails.length === 0) {
@@ -164,7 +116,6 @@ const AssignPro = () => {
     }
 
     const status = filteredDetails[0].Status;
-
     return (
       <div>
         {status === 'Unavailable' || status === 'Assigned' ? (
@@ -216,11 +167,12 @@ const AssignPro = () => {
 
     return 'PAN NOT FOUND';
   };
-  return (    
+
+  return (
     <div>
       <div>
         <h2>{currentFormOne || 'Form One'}</h2>
-        {currentFormOne === null && (
+        {(currentFormOne === null || filteredDetailsFormOne.length===0) && (
           <form onSubmit={(e) => { e.preventDefault(); handleSubmit('Form One'); }}>
             <input
               type='text'
@@ -230,19 +182,19 @@ const AssignPro = () => {
             />
             <button type='submit' className='reassign-button'>Check Availability</button>
           </form>
-        )}
+         )}
 
         {currentFormOne === 'Form One' && filteredDetailsFormOne.length > 0 && (
           <div>
             {tables(filteredDetailsFormOne, 'Form One')}
           </div>
         )}
-        {currentFormOne === 'Form One' && panNotFound && <p style={{ backgroundColor: 'red' }}>Pan not found</p>}
+        {/* {currentFormOne === 'Form One' && panNotFound && <p style={{ backgroundColor: 'red' }}>Pan not found</p>} */}
       </div>
 
       <div>
         <h2>{currentFormTwo || 'Form Two'}</h2>
-        {currentFormTwo === null && (
+        {(currentFormTwo === null|| filteredDetailsFormTwo.length===0) && (
           <form onSubmit={(e) => { e.preventDefault(); handleSubmit('Form Two'); }}>
             <input
               type='text'
@@ -259,12 +211,12 @@ const AssignPro = () => {
             {tables(filteredDetailsFormTwo, 'Form Two')}
           </div>
         )}
-        {currentFormTwo === 'Form Two' && panNotFound && <p style={{ backgroundColor: 'red' }}>Pan not found</p>}
+        {/* {currentFormTwo === 'Form Two' && panNotFound && <p style={{ backgroundColor: 'red' }}>Pan not found</p>} */}
       </div>
 
       <div>
         <h2>{currentFormThree || 'Form Three'}</h2>
-        {currentFormThree === null && (
+        {(currentFormThree === null|| filteredDetailsFormThree.length===0) && (
           <form onSubmit={(e) => { e.preventDefault(); handleSubmit('Form Three'); }}>
             <input
               type='text'
@@ -282,7 +234,7 @@ const AssignPro = () => {
             {tables(filteredDetailsFormThree, 'Form Three')}
           </div>
         )}
-        {currentFormThree === 'Form Three' && panNotFound && <p style={{ backgroundColor: 'red' }}>Pan not found</p>}
+        {/* {currentFormThree === 'Form Three' && panNotFound && <p style={{ backgroundColor: 'red' }}>Pan not found</p>} */}
       </div>
     </div>
   );
