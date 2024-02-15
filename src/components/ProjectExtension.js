@@ -1,4 +1,4 @@
-import React,{ useState } from "react";
+  import React,{ useState } from "react";
 import './ProjectExtension.css';
 import { TbFileSearch } from "react-icons/tb";
 import { TiDelete } from "react-icons/ti";
@@ -25,7 +25,7 @@ const ProjectExtension = () => {
   }
 const [formData, setFormData] = useState({
       project_id: getRandomFromList([1,2,3,4,5]),
-      extendToDate: new Date().toISOString().split('T')[0],
+      extendToDate: new Date().toISOString(),
       reasonForExtension: [''],
       supportingDocuments: '',
       supportingDocumentsOptions: '',
@@ -37,7 +37,7 @@ const [formData, setFormData] = useState({
           viewFile: 1,
         },
       ],
-      documentDate: new Date().toISOString().split('T')[0],
+      documentDate: new Date().toISOString(),
       declarationFormB: '',
       authorizedSignatory: '',
       declarationFormBTable: [
@@ -47,7 +47,7 @@ const [formData, setFormData] = useState({
         },
       ],
       contactDetails: '',
-      DevelopmentDateB1: new Date().toISOString().split('T')[0],
+      DevelopmentDateB1: new Date().toISOString(),
       DevelopmentDeclarationFormB1: '',
       DevelopmentAuthorizedSignatoryB1: '',
       contactB1:'',
@@ -57,7 +57,7 @@ const [formData, setFormData] = useState({
           viewFile: 1,
         },
       ],
-      DevelopmentDateB2: new Date().toISOString().split('T')[0],
+      DevelopmentDateB2: new Date().toISOString(),
       DevelopmentDeclarationFormB2: '',
       LandOwnerB2:'',
       contactB2:'',
@@ -102,15 +102,27 @@ const [formData, setFormData] = useState({
     };
     
     const handleDateChange = (event) => {
+      function toIsoString(date) {
+        var tzo = -date.getTimezoneOffset(),
+            pad = function(num) {
+                return (num < 10 ? '0' : '') + num;
+            };
+      
+        return date.getFullYear() +
+            '-' + pad(date.getMonth() + 1) +
+            '-' + pad(date.getDate()) +
+            'T' + pad(date.getHours()) +
+            ':' + pad(date.getMinutes()) +
+            ':' + pad(date.getSeconds()) + 'Z'
+      }
+      
+
       const selectedDate = event.target.value;
       const name = event.target.name;
-    
-      // Assuming selectedDate is in the format 'dd-mm-yyyy'
-      const [day, month, year] = selectedDate.split('-');
-      const isoFormattedDate = new Date(`${year}-${month}-${day}`).toISOString();
-    
-      setFormData((prevData) => ({ ...prevData, [name]: isoFormattedDate }));
+      const isoFormattedDate = toIsoString(new Date(selectedDate))
+      setFormData((prevData) => ({ ...prevData, [name]: isoFormattedDate }));  
     };
+    
     
     
   

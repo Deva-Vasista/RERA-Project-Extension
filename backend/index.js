@@ -132,16 +132,15 @@ app.post('/api/getA', async (req, res) => {
 app.get('/api/getAssignProfessional', async (req, res) => {
   try {
     const formType = req.query.formType; // Assuming the form type is sent as a query parameter
-
     let professionFilter = {};
 
     // Customize the filter based on the form type
     if (formType === 'Form One') {
       professionFilter = { Consultant_Profession: 'CA' };
     } else if (formType === 'Form Two') {
-      professionFilter = { Consultant_Profession: 'Architect' };
+      professionFilter = { Consultant_Profession: 'ARCHITECT' };
     } else if (formType === 'Form Three') {
-      professionFilter = { Consultant_Profession: 'Engineer' };
+      professionFilter = { Consultant_Profession: 'ENGINEER' };
     }
 
     const formDetails = await prisma.form.findMany({
