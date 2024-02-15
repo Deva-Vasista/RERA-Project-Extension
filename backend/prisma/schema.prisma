@@ -36,24 +36,77 @@ model projects {
 }
 
 model ProjectExtension {
-  id                               Int      @id @default(autoincrement())
-  extendToDate                     DateTime @default(now())
+  id                               Int       @id @default(autoincrement())
   reasonForExtension               String[]
   supportingDocuments              String?
   supportingDocumentsOptions       String?
-  documentDate                     DateTime @default(now())
   declarationFormB                 String?
   authorizedSignatory              String?
   contactDetails                   String?
-  DevelopmentDateB1                DateTime @default(now())
   DevelopmentDeclarationFormB1     String?
   DevelopmentAuthorizedSignatoryB1 String?
   contactB1                        String?
-  DevelopmentDateB2                DateTime @default(now())
   DevelopmentDeclarationFormB2     String?
   LandOwnerB2                      String?
   contactB2                        String?
   order45                          String?
   project_id                       Int
-  projects                         projects @relation(fields: [project_id], references: [id])
+  extendToDate                     DateTime? @db.Timestamptz(3)
+  DevelopmentDateB1                DateTime? @db.Timestamptz(3)
+  DevelopmentDateB2                DateTime? @db.Timestamptz(3)
+  documentDate                     DateTime? @db.Timestamptz(3)
+  projects                         projects  @relation(fields: [project_id], references: [id])
+}
+
+model form {
+  uid                   String  @db.VarChar(30)
+  Consultant_Name       String? @map("Consultant Name") @db.VarChar(50)
+  Consultant_Profession String? @map("Consultant Profession") @db.VarChar(100)
+  Email_Id              String? @map("Email Id") @db.VarChar(50)
+  Mobile_No             String? @map("Mobile No") @db.VarChar(10)
+  Status                String? @db.VarChar(20)
+  pan                   String  @id @db.VarChar(10)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model blocks_log {
+  id                                          Int
+  project_id_old                              Int
+  project_id_new                              Int
+  block_name_old                              String?
+  block_name_new                              String?
+  development_start_date_old                  DateTime? @db.Date
+  development_start_date_new                  DateTime? @db.Date
+  development_end_date_old                    DateTime? @db.Date
+  development_end_date_new                    DateTime? @db.Date
+  height_old                                  Int?
+  height_new                                  Int?
+  fsi_old                                     Int?
+  fsi_new                                     Int?
+  built_up_area_old                           Int?
+  built_up_area_new                           Int?
+  commencement_certificate_no_old             String?
+  commencement_certificate_no_new             String?
+  date_of_latest_commencement_certificate_old DateTime? @db.Date
+  date_of_latest_commencement_certificate_new DateTime? @db.Date
+  all_commencement_certificates_old           String?
+  all_commencement_certificates_new           String?
+  actions                                     String?   @db.VarChar(50)
+  time_of_action                              DateTime? @db.Timestamp(6)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model test_logs {
+  id_old         Int?
+  id_new         Int?
+  name_old       String?   @db.VarChar(50)
+  name_new       String?   @db.VarChar(50)
+  gender_old     String?   @db.Char(1)
+  gender_new     String?   @db.Char(1)
+  actions        String?   @db.VarChar(50)
+  time_of_action DateTime? @db.Timestamp(6)
+
+  @@ignore
 }
