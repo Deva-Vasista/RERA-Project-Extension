@@ -1,4 +1,4 @@
-import React,{ useState,useEffect } from "react";
+import React,{ useState } from "react";
 import './ProjectExtension.css';
 import { TbFileSearch } from "react-icons/tb";
 import { TiDelete } from "react-icons/ti";
@@ -13,23 +13,19 @@ const getRandomFromList =(intList)=>{
     console.error('Error: The list is empty.');
     return null;
   }
-
-  // Get a random index from the list
   const randomIndex = Math.floor(Math.random() * intList.length);
-
-  // Return the randomly selected integer
   return intList[randomIndex];
 }
 
 const ProjectExtension = () => {
-    let navigate = useNavigate(); 
+  let navigate = useNavigate(); 
   const routeChange = () =>{ 
     let path = `/assign-professionals`; 
     navigate(path);
   }
 const [formData, setFormData] = useState({
-      project_id: getRandomFromList([1,2,3,4]),
-      extendToDate: '',
+      project_id: getRandomFromList([1,2,3,4,5]),
+      extendToDate: new Date().toISOString().split('T')[0],
       reasonForExtension: [''],
       supportingDocuments: '',
       supportingDocumentsOptions: '',
@@ -41,7 +37,7 @@ const [formData, setFormData] = useState({
           viewFile: 1,
         },
       ],
-      documentDate: '',
+      documentDate: new Date().toISOString().split('T')[0],
       declarationFormB: '',
       authorizedSignatory: '',
       declarationFormBTable: [
@@ -51,7 +47,7 @@ const [formData, setFormData] = useState({
         },
       ],
       contactDetails: '',
-      DevelopmentDateB1: '',
+      DevelopmentDateB1: new Date().toISOString().split('T')[0],
       DevelopmentDeclarationFormB1: '',
       DevelopmentAuthorizedSignatoryB1: '',
       contactB1:'',
@@ -61,7 +57,7 @@ const [formData, setFormData] = useState({
           viewFile: 1,
         },
       ],
-      DevelopmentDateB2: '',
+      DevelopmentDateB2: new Date().toISOString().split('T')[0],
       DevelopmentDeclarationFormB2: '',
       LandOwnerB2:'',
       contactB2:'',
@@ -84,7 +80,7 @@ const [formData, setFormData] = useState({
       e.preventDefault();
       console.log('Request Sent',formData)
       try {
-        // Assuming your server is running on http://localhost:3001
+   
         const response = await axios.post('http://localhost:3001/api/Submit', formData);
   
         // Handle the response as needed
@@ -104,6 +100,19 @@ const [formData, setFormData] = useState({
         reasonForExtension: updatedTags.map((tag) => tag.text),
       }));
     };
+    
+    const handleDateChange = (event) => {
+      const selectedDate = event.target.value;
+      const name = event.target.name;
+    
+      // Assuming selectedDate is in the format 'dd-mm-yyyy'
+      const [day, month, year] = selectedDate.split('-');
+      const isoFormattedDate = new Date(`${year}-${month}-${day}`).toISOString();
+    
+      setFormData((prevData) => ({ ...prevData, [name]: isoFormattedDate }));
+    };
+    
+    
   
     const handleInputChange = (e) => {
       const { name, value } = e.target;
@@ -120,7 +129,7 @@ const [formData, setFormData] = useState({
             <h2>PROJECT EXTENSION FORM</h2>
             <hr />
   
-            <form onSubmit={handleSubmit}>
+            <form>
               {/* Section 1 */}
               <section className="section-1">
                 {/* Extend to Date */}
@@ -129,7 +138,7 @@ const [formData, setFormData] = useState({
                   <input
                     type="date"
                     name="extendToDate"
-                    onChange={handleInputChange}
+                    onChange={handleDateChange}
                   />
                 </div>
   
@@ -150,7 +159,7 @@ const [formData, setFormData] = useState({
                 </div>
               </section>
   
-        <Blockdetails/>
+        <Blockdetails id={formData.project_id}/>
   
               {/* Section 4 */}
               <section className="section-4">
@@ -209,7 +218,7 @@ const [formData, setFormData] = useState({
                 <div className="section-5">
                   <div>
                     <p>1.4 Date of Issuance of Document</p>
-                    <input type="date" name="documentDate" value={formData.documentDate} onChange={handleInputChange} />
+                    <input type="date" name="documentDate" onChange={handleDateChange} />
                     <p>1.7 Declaration Form-B *</p>
                     <button className="file-btn">
                       <TbFileSearch style={{ width: '15px', height: '15px' }} /> View File / {formData.declarationFormBTable[0].viewFile}
@@ -246,7 +255,7 @@ const [formData, setFormData] = useState({
                 <div className="section-5">
                   <div>
                     <p>1.4 Date of Issuance of Document</p>
-                    <input type="date" name="DevelopmentDateB1" value={formData.DevelopmentDateB1} onChange={handleInputChange} />
+                    <input type="date" name="DevelopmentDateB1" onChange={handleDateChange} />
                     <p>1.7 Declaration Form-B1</p>
                     <button className="file-btn">
                       <TbFileSearch style={{ width: '15px', height: '15px' }} /> View File / {formData.DevelopmentDeclarationFormB1Table[0].viewFile}
@@ -282,7 +291,7 @@ const [formData, setFormData] = useState({
                 <div className="section-5">
                   <div>
                     <p>1.4 Date of Issuance of Document</p>
-                    <input type="date" name="DevelopmentDateB2" value={formData.DevelopmentDateB2} onChange={handleInputChange} />
+                    <input type="date" name="DevelopmentDateB2" onChange={handleDateChange} />
                     <p>1.7 Declaration Form-B1</p>
                     <button className="file-btn">
                       <TbFileSearch style={{ width: '15px', height: '15px' }} /> View File / {formData.DevelopmentDeclarationFormB2Table[0].viewFile}
@@ -314,14 +323,14 @@ const [formData, setFormData] = useState({
                 </div>
                   <div style={{ display: 'flex' }}>
                       <button className="file-btn">
-                        <TbFileSearch style={{ width: '15px', height: '15px' }} /> View File / {formData.DevelopmentDeclarationFormB1Table[0].viewFile}
+                        <TbFileSearch style={{ width: '15px', height: '15px' }}/> View File / {formData.DevelopmentDeclarationFormB1Table[0].viewFile}
                       </button>
                   </div>
                 </div>
               </section>
               {/* Submit button */}
               
-              <button type="submit" className="file-btn" style={{ display: 'block', margin: 'auto' }}>
+              <button type="submit" className="file-btn" style={{ display: 'block', margin: 'auto' }} onClick={handleSubmit}>
                 Save
               </button>
               <button type="submit" onClick={routeChange} className="file-btn" style={{ display: 'block', margin: 'auto' }}>

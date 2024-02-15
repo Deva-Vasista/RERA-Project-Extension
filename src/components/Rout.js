@@ -4,6 +4,7 @@ import {Routes,Route} from 'react-router-dom';
 import AssignPro from './AssignPro.js';
 import Paywall from './paywall.js';
 import Confirm from './confirm.js';
+import Apro from './Apro.js';
 
 function Content(){
     return(

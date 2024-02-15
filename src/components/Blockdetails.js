@@ -3,18 +3,18 @@ import './ProjectExtension.css';
 import axios from 'axios'
 
 
-export default function Blockdetails(){
+export default function Blockdetails(id){
     const [blockData, setBlockData] = useState([]);
     const formatDate = (dateString) => {
         const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
         const formattedDate = new Date(dateString).toLocaleDateString('en-US', options);
         return formattedDate;
       };
-
+    
     const getdata = async () => {
         try {
           // Make a GET request to the Express server endpoint
-          const response = await axios.get("http://localhost:3001/api/getBlockDetails");
+          const response = await axios.get("http://localhost:3001/api/getBlockDetails",{id:id});
     
           // Update the state with the fetched data
           setBlockData(response.data);
