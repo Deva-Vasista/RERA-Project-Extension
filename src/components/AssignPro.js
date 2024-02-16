@@ -38,11 +38,11 @@ const AssignPro = () => {
       setInputNumberFormThree(value);
     }
   };
-  const handleSubmit = (formType) => {
+  const handleSubmit = (formType) => {  
     const inputNumber = getInputNumberByFormType(formType);
     if (formType === 'Form One') {
       const filteredFormOne = details.filter(
-        (element) => element.pan === inputNumber && (element.Status === 'available' && element.Consultant_Profession==='CA')
+        (element) => element.pan === inputNumber && (element.Status === 'AVAILABLE' && element.Consultant_Profession==='CA')
       );
       if(filteredFormOne.length===0){
        message.error("PAN not found");
@@ -54,7 +54,7 @@ const AssignPro = () => {
     } 
     else if (formType === 'Form Two') {
       const filteredFormTwo = details.filter(
-        (element) => element.pan === inputNumber && (element.Status === 'available' && element.Consultant_Profession==='ENGINEER')
+        (element) => element.pan === inputNumber && (element.Status === 'AVAILABLE' && element.Consultant_Profession==='ENGINEER')
       );
       if(filteredFormTwo.length===0){
         console.log(filteredFormTwo);
@@ -66,7 +66,7 @@ const AssignPro = () => {
     }
     } else if (formType === 'Form Three') {
       const filteredFormThree = details.filter(
-        (element) => element.pan === inputNumber && (element.Status === 'available' && element.Consultant_Profession==='ARCHITECT')
+        (element) => element.pan === inputNumber && (element.Status === 'AVAILABLE' && element.Consultant_Profession==='ARCHITECT')
       );
       if(filteredFormThree.length===0){
         message.error("PAN not found");

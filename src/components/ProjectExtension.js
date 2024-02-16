@@ -123,9 +123,6 @@ const [formData, setFormData] = useState({
       setFormData((prevData) => ({ ...prevData, [name]: isoFormattedDate }));  
     };
     
-    
-    
-  
     const handleInputChange = (e) => {
       const { name, value } = e.target;
       setFormData((prevData) => ({
@@ -138,7 +135,7 @@ const [formData, setFormData] = useState({
       <>
         <section style={{ display: 'flex' }}>
           <div className="form-container">
-            <h2>PROJECT EXTENSION FORM</h2>
+            <h2>PROJECT EXTENSION FORM</h2> 
             <hr />
   
             <form>

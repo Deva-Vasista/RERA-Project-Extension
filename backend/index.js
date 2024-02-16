@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const multer = require('multer')
 const path = require('path');
+const Panvalidation=require('./validations/panvalidation')
 const { PrismaClient } = require('@prisma/client');
 
 const app = express();
@@ -42,8 +43,7 @@ app.post('/api/updateTest',async (req,res)=>{
     res.status(500).json({ error: 'Internal Server Error' });
 }
 })
-app.get('/api/getBlockDetails', async (req, res) => {
-  const {id} = req.body; 
+app.get('/api/getBlockDetails', async (req, res) => { 
   try {
       const blockDetails = await prisma.blocks.findMany();
       res.json(blockDetails);
@@ -54,9 +54,14 @@ app.get('/api/getBlockDetails', async (req, res) => {
 });
 
 app.post('/api/Submit', async (req, res) => {
-
   try {
     console.log(req.body)
+    const data=req.body;
+    const {error} = Panvalidation.validate(data);
+    if(error){
+      console.log("Validation error:",error.details[0].message);
+      return res.status(400).json({error: error.details[0].message});
+    }
     const {
       extendToDate,
       reasonForExtension,
